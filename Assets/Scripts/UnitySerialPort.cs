@@ -37,6 +37,10 @@ public class UnitySerialPort : MonoBehaviour
     public float amplify;
     public float decrease;
     public float decreaseThrust;
+    public float pushForce;
+
+    public float oldTime = 0;
+    public float newTime;
 
 
     #region Properties
@@ -120,6 +124,10 @@ public class UnitySerialPort : MonoBehaviour
     Rigidbody rb;
     int data;
     public float tajm;
+    ArrayList tempArray = new ArrayList();
+    public int avInt;
+    public int oldAv;
+
 
     Vector3 temp = new Vector3(0, 1, 0);
     Vector3 temp2 = new Vector3(0, 0.1f, 0);
@@ -169,7 +177,7 @@ public class UnitySerialPort : MonoBehaviour
         //cube = GameObject.FindGameObjectWithTag("cube");
 
         gb = GameObject.FindGameObjectWithTag("Player");
-        rb = gb.GetComponent<Rigidbody>();    
+        rb = gb.GetComponent<Rigidbody>();
 
 
 
@@ -610,7 +618,7 @@ public class UnitySerialPort : MonoBehaviour
 
 
 
-        test = rawData;
+            test = rawData;
         //Debug.Log(rawData);
 
 
@@ -655,25 +663,80 @@ public class UnitySerialPort : MonoBehaviour
 
 
 
-
-
-
-
     public void ConvertToInt()
     {
         data = int.Parse(test);
         //Debug.Log(data - decrease * amplify);
         //Debug.Log("Test: " + test);
 
+
+        if (tajm - oldTime <= 1)
+        {
+
+        }
+        else
+        {
+            oldTime = tajm;
+            AverageInput();
+            Debug.Log("Det har gått 1 sekunder nu");
+        }
+
+
         if (tajm > 7)
         {
-            rb.AddForce(transform.right * (data - decrease * amplify));
+            //rb.AddForce(transform.right * (data - decrease * amplify));   
             //rb.AddForce(transform.up * (data - decreaseThrust * amplify));
         }
         else {
-            Debug.Log("Countdown motherfucker: " + tajm);
+            //Debug.Log("Countdown motherfucker: " + tajm);
+        }
+    }
+   
+
+
+    public void AverageInput()
+    {
+        int tempInt = 0;
+
+        for (int x = 0; x < 500; x++)
+        {
+
+            tempArray.Add(data);
+
+            tempInt += (int)tempArray[x];
+            //print("avInt = " + avInt);
+            //print("count = " + tempArray.Count);
+
+            //print("#" + tempArray.Count + ": " + (int)tempArray[x]);
+            //print(tempArray.Count);
         }
 
+        oldAv = avInt;
+        avInt = (tempInt / tempArray.Count);
+
+        triggerAction();
+
+        print("AverageInt: " + avInt);
+
+        print(" ---------------------- RESETTING ----------------------");
+        tempArray.Clear();
+        print(tempArray.Count);
+
+    }
+
+    public void triggerAction()
+    {
+        double dec = 0.0;
+        if(oldAv != 0)
+        {
+            dec = (double)avInt / (double)oldAv;
+
+
+            if (dec > 1.0187)
+            {
+                rb.AddForce(transform.right * (pushForce * amplify));
+            }
+        }
     }
 
 
