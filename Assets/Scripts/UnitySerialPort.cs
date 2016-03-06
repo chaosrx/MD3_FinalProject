@@ -38,6 +38,7 @@ public class UnitySerialPort : MonoBehaviour
     public float decrease;
     public float decreaseThrust;
     public float pushForce;
+    public bool timeToRun;
 
     public float oldTime = 0;
     public float newTime;
@@ -179,7 +180,9 @@ public class UnitySerialPort : MonoBehaviour
         gb = GameObject.FindGameObjectWithTag("Player");
         rb = gb.GetComponent<Rigidbody>();
 
+        
 
+        //rb.interpolation = RigidbodyInterpolation.Interpolate; //should smooth out shit, but suprise, it doesent, also avalible as a setting in the inspector...
 
         // Population of comport list via system.io.ports
         PopulateComPorts();
@@ -200,6 +203,8 @@ public class UnitySerialPort : MonoBehaviour
 
         tajm = Time.time;
         ConvertToInt();
+
+        rb.velocity = new Vector2(pushForce, rb.velocity.x);
 
         // Check if the serial port exists and is open
         if (SerialPort == null || SerialPort.IsOpen == false) { return; }
@@ -642,24 +647,32 @@ public class UnitySerialPort : MonoBehaviour
 
 
 
+    void FixedUpdate()
+    {
+        if (tajm > 7)
+        {
+            rb.velocity = new Vector2(pushForce, 0);
 
 
+        }
+        else
+        {
+            //do nothing.
+            rb.velocity = new Vector2(0, -5f);
+
+        }
 
 
+        if (timeToRun == true)
+        {
+            print("timeToRun");
 
+            rb.AddForce(new Vector2(5000f, 200f));
+            //rb.AddRelativeForce(0, 0, 10000 * Time.fixedDeltaTime);
 
-
-
-
-
-
-
-
-
-
-
-
-
+            timeToRun = false;
+        }
+    }
 
 
 
@@ -678,7 +691,7 @@ public class UnitySerialPort : MonoBehaviour
         {
             oldTime = tajm;
             AverageInput();
-            Debug.Log("Det har gått 1 sekunder nu");
+            //Debug.Log("Det har gått 1 sekunder nu");
         }
 
 
@@ -691,7 +704,7 @@ public class UnitySerialPort : MonoBehaviour
             //Debug.Log("Countdown motherfucker: " + tajm);
         }
     }
-   
+
 
 
     public void AverageInput()
@@ -716,45 +729,33 @@ public class UnitySerialPort : MonoBehaviour
 
         triggerAction();
 
-        print("AverageInt: " + avInt);
+        //print("AverageInt: " + avInt);
+        //print(" ---------------------- RESETTING ----------------------");
 
-        print(" ---------------------- RESETTING ----------------------");
         tempArray.Clear();
-        print(tempArray.Count);
+        //print(tempArray.Count);
 
     }
 
     public void triggerAction()
     {
         double dec = 0.0;
-        if(oldAv != 0)
+        if (oldAv != 0)
         {
             dec = (double)avInt / (double)oldAv;
 
 
             if (dec > 1.0187)
             {
-                rb.AddForce(transform.right * (pushForce * amplify));
+                print("Action triggered.");
+                timeToRun = true;
+
+                //rb.AddForce(transform.right * (pushForce * amplify)); //Looks like teleport, no good.
+
+
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
