@@ -40,6 +40,11 @@ public class UnitySerialPort : MonoBehaviour
     public float pushForce;
     public bool timeToRun;
 
+    public float tm = 1.5f;
+    public float oldTm;
+
+    public float extraSpeed = 0;
+
     public float oldTime = 0;
     public float newTime;
 
@@ -180,7 +185,7 @@ public class UnitySerialPort : MonoBehaviour
         gb = GameObject.FindGameObjectWithTag("Player");
         rb = gb.GetComponent<Rigidbody>();
 
-        
+
 
         //rb.interpolation = RigidbodyInterpolation.Interpolate; //should smooth out shit, but suprise, it doesent, also avalible as a setting in the inspector...
 
@@ -649,17 +654,17 @@ public class UnitySerialPort : MonoBehaviour
 
     void FixedUpdate()
     {
+
         if (tajm > 7)
         {
-            rb.velocity = new Vector2(pushForce, 0);
+            rb.velocity = new Vector2((pushForce+extraSpeed), 0);
 
 
         }
         else
         {
             //do nothing.
-            rb.velocity = new Vector2(0, -5f);
-
+            rb.velocity = new Vector2(0, -5f); // trycker ner objektet, annars lyfter det av någon jävla anledning
         }
 
 
@@ -667,7 +672,7 @@ public class UnitySerialPort : MonoBehaviour
         {
             print("timeToRun");
 
-            rb.AddForce(new Vector2(5000f, 200f));
+            //rb.AddForce(new Vector2(5000f, 200f));
             //rb.AddRelativeForce(0, 0, 10000 * Time.fixedDeltaTime);
 
             timeToRun = false;
@@ -748,13 +753,25 @@ public class UnitySerialPort : MonoBehaviour
             if (dec > 1.0187)
             {
                 print("Action triggered.");
-                timeToRun = true;
+
+                StartCoroutine(TimerShit());
+                //timeToRun = true;
 
                 //rb.AddForce(transform.right * (pushForce * amplify)); //Looks like teleport, no good.
 
 
             }
         }
+    }
+
+
+    IEnumerator TimerShit()
+    {
+        Debug.Log("Before Waiting 2 seconds");
+        extraSpeed = 15;
+        yield return new WaitForSeconds(1);
+        extraSpeed = 0;
+        Debug.Log("After Waiting 2 Seconds");
     }
 
 
