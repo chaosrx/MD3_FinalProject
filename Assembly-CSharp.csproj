@@ -632,6 +632,7 @@
      <Compile Include="Assets\PlayMaker\Include\iTweenFSMEvents.cs" />
      <Compile Include="Assets\PlayMaker\UpdateHelper.cs" />
      <Compile Include="Assets\Scripts\UnitySerialPort.cs" />
+     <Compile Include="Assets\Scripts\fadingPictures.cs" />
      <Compile Include="Assets\Scripts\movingRight.cs" />
      <Compile Include="Assets\iTween\iTween.cs" />
      <None Include="Assets\PlayMaker\Templates\readme.txt" />

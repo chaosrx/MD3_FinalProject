@@ -750,7 +750,7 @@ public class UnitySerialPort : MonoBehaviour
             dec = (double)avInt / (double)oldAv;
 
 
-            if (dec > 1.0187)
+            if (dec > 1.00787)
             {
                 print("Action triggered.");
 
@@ -767,11 +767,56 @@ public class UnitySerialPort : MonoBehaviour
 
     IEnumerator TimerShit()
     {
-        Debug.Log("Before Waiting 2 seconds");
-        extraSpeed = 15;
-        yield return new WaitForSeconds(1);
+        float hej = 0.0f;
+
+        extraSpeed += 0.8f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed += 1.2f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed += 2.0f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed += 3.0f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed += 3.5f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed += 4.0f + hej;
+
+        //16.5
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed -= 0.8f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed -= 1.4f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed -= 1.7f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed -= 1.9f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed -= 2.0f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed -= 2.1f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed -= 2.5f + hej;
+
+        yield return new WaitForSeconds(0.1f);
+        extraSpeed -= 2.6f + hej;
+
+        //16.5
+
         extraSpeed = 0;
-        Debug.Log("After Waiting 2 Seconds");
+
+        
     }
 
 
