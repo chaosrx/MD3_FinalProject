@@ -138,7 +138,6 @@ public class fadingPictures : MonoBehaviour
 
     void fadeIn()
     {
-        print("fadeIn");
         ma.a = Mathf.Lerp(ma.a, 1, Time.deltaTime * fadespeed);
         ren.color = ma;
         if (ma.a >= 0.90f)
@@ -150,7 +149,6 @@ public class fadingPictures : MonoBehaviour
 
     void fadeOut()
     {
-        print("fadeOut");
         ma.a -= Mathf.Lerp(0, 1, Time.deltaTime * fadespeed);
         ren.color = ma;
         if (ma.a < 0.001f)
