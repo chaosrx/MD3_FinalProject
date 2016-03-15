@@ -45,6 +45,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Cardboard\Editor\CardboardAudioListenerEditor.cs" />
+     <Compile Include="Assets\Cardboard\Editor\CardboardAudioRoomEditor.cs" />
+     <Compile Include="Assets\Cardboard\Editor\CardboardAudioSourceEditor.cs" />
+     <Compile Include="Assets\Cardboard\Editor\CardboardEditor.cs" />
+     <Compile Include="Assets\Cardboard\Editor\CardboardMenu.cs" />
+     <Compile Include="Assets\Cardboard\Editor\CardboardSetup.cs" />
+     <Compile Include="Assets\Cardboard\Editor\StereoControllerEditor.cs" />
      <Compile Include="Assets\KunaiEditor\Editor\KunaiEditor.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Editor\GetDistanceEditor.cs" />
      <Compile Include="Assets\PlayMaker\Actions\Editor\LookAtActionEditor.cs" />
@@ -80,19 +87,19 @@
      <Compile Include="Assets\PlayMaker\Editor\PlayMakerWelcomeWindow.cs" />
      <Compile Include="Assets\PlayMaker\Editor\ReportWindow.cs" />
      <Compile Include="Assets\iTween\PlayMaker\Editor\iTweenMoveToActionEditor.cs" />
+     <None Include="Assets\Cardboard\Resources\SkyboxMesh.shader" />
+     <None Include="Assets\Cardboard\Distortion\CardboardDistortion.cginc" />
      <None Include="Assets\PlayMaker\Templates\readme.txt" />
      <None Include="Assets\PlayMaker\Readme.txt" />
+     <None Include="Assets\Cardboard\Resources\UnlitTexture.shader" />
      <None Include="Assets\VarietyParticles\Variety Particles Readme.txt" />
-     <None Include="Assets\MicControl2\UpdateLog.txt" />
+     <None Include="Assets\Plugins\Android\AndroidManifest.xml" />
      <None Include="Assets\iTween\ReadMe!\ReadMe!.txt" />
      <None Include="Assets\PlayMaker\Resources\PlayMakerAssemblies.txt" />
-     <None Include="Assets\MicControl2\Unity 5_x-5_2_x Users README.txt" />
-     <None Include="Assets\MicControl2\ReadMe.txt" />
+     <None Include="Assets\Cardboard\Resources\UI\CardboardReticleShader.shader" />
      <None Include="Assets\KunaiEditor\Editor\Readme.txt" />
+     <None Include="Assets\Cardboard\Resources\SolidColor.shader" />
      <None Include="Assets\PlayMaker\Versions\readme.txt" />
- <Reference Include="Assembly-UnityScript">
- <HintPath>C:/Users/Niz/Documents/MD3_FinalProject/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
@@ -164,6 +171,9 @@
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.Android.Extensions">
+ <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>

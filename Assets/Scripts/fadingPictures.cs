@@ -129,6 +129,7 @@ public class fadingPictures : MonoBehaviour
                 {
                     initRun = false;
                     readyB = false;
+                    Destroy(this);
                 }
             }
 

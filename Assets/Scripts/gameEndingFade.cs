@@ -3,7 +3,6 @@ using System.Collections;
 
 public class gameEndingFade : MonoBehaviour
 {
-    private AudioSource audioSource;
 
     public float fadeSpeed = 0.0f;
 
@@ -42,7 +41,6 @@ public class gameEndingFade : MonoBehaviour
         col = spRen.color;
         colEnd = spEndRen.color;
 
-        audioSource = theCollider.GetComponent<AudioSource>();
     }
 
 
@@ -70,7 +68,6 @@ public class gameEndingFade : MonoBehaviour
     {
         print("------------------ COLLIDER ------------------------");
         run = true;
-        audioSource.Play();
     }
 
 
